@@ -1,5 +1,6 @@
-// const con = require("../database/mysql");
 const con = require('../database/mssql');
+const util = require('util');
+const query = util.promisify(con.query).bind(con);
 const config = require("../../config");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
@@ -163,5 +164,6 @@ module.exports = {
   tokenDecrypt,
   responseGenerator,
   sendEmail,
-  generateRandomString
+  generateRandomString,
+  query
 };

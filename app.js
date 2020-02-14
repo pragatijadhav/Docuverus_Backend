@@ -7,6 +7,7 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const indexRouter = require('./routes/index');
 const userRouter = require('./modules/user/routes');
+const commonRouter = require('./modules/commonapi/commonapiRoutes');
 const cors = require('cors');
 const app = express();
 
@@ -25,11 +26,12 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/user', userRouter);
+app.use('/api', userRouter);
+app.use('/api', commonRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  // next(createError(404));
 });
 
 // error handler
