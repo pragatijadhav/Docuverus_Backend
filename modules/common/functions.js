@@ -1,6 +1,8 @@
-const con = require('../database/mssql');
+const conCommon = require('../database/mssqlCommon');
+const conGroup = require('../database/mssqlGroup');
 const util = require('util');
-const query = util.promisify(con.query).bind(con);
+const queryCommon = util.promisify(conCommon.query).bind(conCommon);
+const queryGroup = util.promisify(conGroup.query).bind(conGroup);
 const config = require("../../config");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
@@ -165,5 +167,6 @@ module.exports = {
   responseGenerator,
   sendEmail,
   generateRandomString,
-  query
+  queryCommon,
+  queryGroup
 };
